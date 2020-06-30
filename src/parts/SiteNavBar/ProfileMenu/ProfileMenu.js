@@ -15,7 +15,7 @@ import Divider from '@material-ui/core/Divider';
 const ProfileMenu = ({handleMobileMenuClose, menuId}) => {
 
     const [anchorElProfile, setAnchorElProfile] = React.useState(null);
-    const isProfuleMenuOpen = Boolean(anchorElProfile);
+    const isProfileMenuOpen = Boolean(anchorElProfile);
 
     const handleProfileMenuOpen = (event) => {
         setAnchorElProfile(event.currentTarget);
@@ -46,7 +46,7 @@ const ProfileMenu = ({handleMobileMenuClose, menuId}) => {
                 id={menuId}
                 keepMounted
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                open={isProfuleMenuOpen}
+                open={isProfileMenuOpen}
                 onClose={handleProfileMenuClose}
             >
                 <MenuItem onClick={handleProfileMenuClose}>
