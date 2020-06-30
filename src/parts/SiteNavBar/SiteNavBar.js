@@ -29,6 +29,8 @@ import AccountBoxIcon from '@material-ui/icons/AccountBox';
 import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
 import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import MessageIcon from '@material-ui/icons/Message';
+import NotificationImportantIcon from '@material-ui/icons/NotificationImportant';
 
 const drawerWidth = 240;
 
@@ -158,13 +160,6 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-const messages = [
-    'Show some love to Material-UI',
-    'Show all notification content',
-    'Hide sensitive notification content',
-    'Hide all notification content',
-];
-
 const menuId = 'primary-search-account-menu';
 const mobileMenuId = 'primary-search-account-menu-mobile';
 
@@ -175,67 +170,125 @@ export default function MiniDrawer() {
     const [anchorElProfile, setAnchorElProfile] = React.useState(null);
     const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
     const [anchorElMessages, setAnchorElMessages] = React.useState(null);
-    const [selectedIndexMessages, setSelectedIndexMessages] = React.useState(1);
+    const [anchorElAlerts, setAnchorElAlerts] = React.useState(null);
 
     const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-    const isMenuOpen = Boolean(anchorElProfile);
-
-    const handleClickListItem = (event) => {
-        setAnchorElMessages(event.currentTarget);
-    };
-
-    const handleMenuItemClick = (event, index) => {
-        setSelectedIndexMessages(index);
-        setAnchorElMessages(null);
-    };
-
-    const handleClose = () => {
-        setAnchorElMessages(null);
-    };
+    const isProfuleMenuOpen = Boolean(anchorElProfile);
+    const isMessagesMenuOpen = Boolean(anchorElMessages);
+    const isAlertsMenuOpen = Boolean(anchorElAlerts);
 
     const handleProfileMenuOpen = (event) => {
         setAnchorElProfile(event.currentTarget);
     };
 
-    const handleMobileMenuOpen = (event) => {
-        setMobileMoreAnchorEl(event.currentTarget);
-    };
-
-    const handleMenuClose = () => {
+    const handleProfileMenuClose = () => {
         setAnchorElProfile(null);
         handleMobileMenuClose();
+    };
+
+    const handleMessagesMenuOpen = (event) => {
+        setAnchorElMessages(event.currentTarget);
+    };
+
+    const handleMessagesMenuClose = () => {
+        setAnchorElMessages(null);
+        handleMessagesMenuClose();
+    };
+
+    const handleAlertsMenuOpen = (event) => {
+        setAnchorElAlerts(event.currentTarget);
+    };
+
+    const handleAlertsMenuClose = () => {
+        setAnchorElAlerts(null);
+        handleAlertsMenuClose();
+    };
+
+
+    const handleMobileMenuOpen = (event) => {
+        setMobileMoreAnchorEl(event.currentTarget);
     };
 
     const handleMobileMenuClose = () => {
         setMobileMoreAnchorEl(null);
     };
 
-    const renderMenu = (
+    const renderProfileMenu = (
         <Menu
             anchorEl={anchorElProfile}
             anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
             id={menuId}
             keepMounted
             transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-            open={isMenuOpen}
-            onClose={handleMenuClose}
+            open={isProfuleMenuOpen}
+            onClose={handleProfileMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>
+            <MenuItem onClick={handleProfileMenuClose}>
                 <ListItemIcon> <AccountBoxIcon fontSize="small" /></ListItemIcon>
                 <Typography variant="inherit">Profile</Typography>
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>
+            <MenuItem onClick={handleProfileMenuClose}>
                 <ListItemIcon> <AttachMoneyIcon fontSize="small" /></ListItemIcon>
                 <Typography variant="inherit">Your sales</Typography>
             </MenuItem>
-            <MenuItem onClick={handleMenuClose}>
+            <MenuItem onClick={handleProfileMenuClose}>
                 <ListItemIcon> <EmojiPeopleIcon fontSize="small" /></ListItemIcon>
                 <Typography variant="inherit">Your customers</Typography>
             </MenuItem>
             <Divider />
-            <MenuItem onClick={handleMenuClose}>
+            <MenuItem onClick={handleProfileMenuClose}>
                 <ListItemIcon> <ExitToAppIcon fontSize="small" /></ListItemIcon>
                 <Typography variant="inherit">Sign out</Typography>
+            </MenuItem>
+        </Menu>
+    );
+
+    const renderMessagesMenu = (
+        <Menu
+            anchorEl={anchorElMessages}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isMessagesMenuOpen}
+            onClose={handleMessagesMenuClose}
+        >
+            <MenuItem onClick={handleMessagesMenuClose}>
+                <ListItemIcon> <MessageIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Message 1</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleMessagesMenuClose}>
+                <ListItemIcon> <MessageIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Message 2</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleMessagesMenuClose}>
+                <ListItemIcon> <MessageIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Message 3</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleMessagesMenuClose}>
+                <ListItemIcon> <MessageIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Message 4</Typography>
+            </MenuItem>
+        </Menu>
+    );
+
+    const renderAlertsMenu = (
+        <Menu
+            anchorEl={anchorElAlerts}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+            id={menuId}
+            keepMounted
+            transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+            open={isAlertsMenuOpen}
+            onClose={handleAlertsMenuClose}
+        >
+            <MenuItem onClick={handleAlertsMenuClose}>
+                <ListItemIcon> <NotificationImportantIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Alert 1</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleAlertsMenuClose}>
+                <ListItemIcon> <NotificationImportantIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Alert 2</Typography>
             </MenuItem>
         </Menu>
     );
@@ -291,30 +344,17 @@ export default function MiniDrawer() {
             >
                 <Toolbar>
                     <Typography variant="h6" noWrap>
-                        Mini variant drawer
+                        Dashboard
                     </Typography>
-                    <div className={classes.search}>
-                        <div className={classes.searchIcon}>
-                            <SearchIcon />
-                        </div>
-                        <InputBase
-                            placeholder="Search…"
-                            classes={{
-                                root: classes.inputRoot,
-                                input: classes.inputInput,
-                            }}
-                            inputProps={{ 'aria-label': 'search' }}
-                        />
-                    </div>
                     <div className={classes.grow} />
                     <div className={classes.sectionDesktop}>
-                        <IconButton aria-label="show 4 new mails" color="inherit">
+                        <IconButton aria-label="show 4 new mails" color="inherit" onClick={handleMessagesMenuOpen}>
                             <Badge badgeContent={4} color="secondary">
                                 <MailIcon />
                             </Badge>
                         </IconButton>
-                        <IconButton aria-label="show 17 new notifications" color="inherit">
-                            <Badge badgeContent={17} color="secondary">
+                        <IconButton aria-label="show 2 new notifications" color="inherit" onClick={handleAlertsMenuOpen}>
+                            <Badge badgeContent={2} color="secondary">
                                 <NotificationsIcon />
                             </Badge>
                         </IconButton>
@@ -343,7 +383,9 @@ export default function MiniDrawer() {
                 </Toolbar>
             </AppBar>
             {renderMobileMenu}
-            {renderMenu}
+            {renderProfileMenu}
+            {renderMessagesMenu}
+            {renderAlertsMenu}
             <Drawer
                 onMouseEnter={() => setOpen(true)}
                 onMouseLeave={() => setOpen(false)}
