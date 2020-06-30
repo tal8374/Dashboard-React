@@ -24,6 +24,11 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
+import PriorityHighIcon from '@material-ui/icons/PriorityHigh';
+import AccountBoxIcon from '@material-ui/icons/AccountBox';
+import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 
 const drawerWidth = 240;
 
@@ -177,16 +182,16 @@ export default function MiniDrawer() {
 
     const handleClickListItem = (event) => {
         setAnchorElMessages(event.currentTarget);
-      };
-    
-      const handleMenuItemClick = (event, index) => {
+    };
+
+    const handleMenuItemClick = (event, index) => {
         setSelectedIndexMessages(index);
         setAnchorElMessages(null);
-      };
-    
-      const handleClose = () => {
+    };
+
+    const handleClose = () => {
         setAnchorElMessages(null);
-      };
+    };
 
     const handleProfileMenuOpen = (event) => {
         setAnchorElProfile(event.currentTarget);
@@ -215,8 +220,23 @@ export default function MiniDrawer() {
             open={isMenuOpen}
             onClose={handleMenuClose}
         >
-            <MenuItem onClick={handleMenuClose}>Profile</MenuItem>
-            <MenuItem onClick={handleMenuClose}>My account</MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+                <ListItemIcon> <AccountBoxIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Profile</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+                <ListItemIcon> <AttachMoneyIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Your sales</Typography>
+            </MenuItem>
+            <MenuItem onClick={handleMenuClose}>
+                <ListItemIcon> <EmojiPeopleIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Your customers</Typography>
+            </MenuItem>
+            <Divider />
+            <MenuItem onClick={handleMenuClose}>
+                <ListItemIcon> <ExitToAppIcon fontSize="small" /></ListItemIcon>
+                <Typography variant="inherit">Sign out</Typography>
+            </MenuItem>
         </Menu>
     );
 
