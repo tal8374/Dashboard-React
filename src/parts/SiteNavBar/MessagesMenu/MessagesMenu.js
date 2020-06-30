@@ -12,20 +12,10 @@ import MailIcon from '@material-ui/icons/Mail';
 const MessagesMenu = ({ menuId }) => {
 
     const [anchorElMessages, setAnchorElMessages] = React.useState(null);
-    const isMessagesMenuOpen = Boolean(anchorElMessages);
-
-    const handleMessagesMenuOpen = (event) => {
-        setAnchorElMessages(event.currentTarget);
-    };
-
-    const handleMessagesMenuClose = () => {
-        setAnchorElMessages(null);
-        handleMessagesMenuClose();
-    };
 
     return (
         <React.Fragment>
-            <IconButton aria-label="show 4 new mails" color="inherit" onClick={handleMessagesMenuOpen}>
+            <IconButton aria-label="show 4 new mails" color="inherit" onClick={(event) => setAnchorElMessages(event.currentTarget)}>
                 <Badge badgeContent={4} color="secondary">
                     <MailIcon />
                 </Badge>
@@ -37,22 +27,22 @@ const MessagesMenu = ({ menuId }) => {
                 id={menuId}
                 keepMounted
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                open={isMessagesMenuOpen}
-                onClose={handleMessagesMenuClose}
+                open={Boolean(anchorElMessages)}
+                onClose={() => setAnchorElMessages(null)}
             >
-                <MenuItem onClick={handleMessagesMenuClose}>
+                <MenuItem onClick={() => setAnchorElMessages(null)}>
                     <ListItemIcon> <MessageIcon fontSize="small" /></ListItemIcon>
                     <Typography variant="inherit">Message 1</Typography>
                 </MenuItem>
-                <MenuItem onClick={handleMessagesMenuClose}>
+                <MenuItem onClick={() => setAnchorElMessages(null)}>
                     <ListItemIcon> <MessageIcon fontSize="small" /></ListItemIcon>
                     <Typography variant="inherit">Message 2</Typography>
                 </MenuItem>
-                <MenuItem onClick={handleMessagesMenuClose}>
+                <MenuItem onClick={() => setAnchorElMessages(null)}>
                     <ListItemIcon> <MessageIcon fontSize="small" /></ListItemIcon>
                     <Typography variant="inherit">Message 3</Typography>
                 </MenuItem>
-                <MenuItem onClick={handleMessagesMenuClose}>
+                <MenuItem onClick={() => setAnchorElMessages(null)}>
                     <ListItemIcon> <MessageIcon fontSize="small" /></ListItemIcon>
                     <Typography variant="inherit">Message 4</Typography>
                 </MenuItem>

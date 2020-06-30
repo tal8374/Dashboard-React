@@ -12,20 +12,9 @@ import EmojiPeopleIcon from '@material-ui/icons/EmojiPeople';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import Divider from '@material-ui/core/Divider';
 
-const ProfileMenu = ({handleMobileMenuClose, menuId}) => {
+const ProfileMenu = ({ menuId }) => {
 
     const [anchorElProfile, setAnchorElProfile] = React.useState(null);
-    const isProfileMenuOpen = Boolean(anchorElProfile);
-
-    const handleProfileMenuOpen = (event) => {
-        setAnchorElProfile(event.currentTarget);
-    };
-
-    const handleProfileMenuClose = () => {
-        setAnchorElProfile(null);
-        handleMobileMenuClose();
-    };
-
 
     return (
         <React.Fragment>
@@ -34,7 +23,7 @@ const ProfileMenu = ({handleMobileMenuClose, menuId}) => {
                 aria-label="account of current user"
                 aria-controls={menuId}
                 aria-haspopup="true"
-                onClick={handleProfileMenuOpen}
+                onClick={(event) => setAnchorElProfile(event.currentTarget)}
                 color="inherit"
             >
                 <AccountCircle />
@@ -46,28 +35,27 @@ const ProfileMenu = ({handleMobileMenuClose, menuId}) => {
                 id={menuId}
                 keepMounted
                 transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                open={isProfileMenuOpen}
-                onClose={handleProfileMenuClose}
+                open={Boolean(anchorElProfile)}
+                onClose={() => setAnchorElProfile(null)}
             >
-                <MenuItem onClick={handleProfileMenuClose}>
+                <MenuItem onClick={() => setAnchorElProfile(null)}>
                     <ListItemIcon> <AccountBoxIcon fontSize="small" /></ListItemIcon>
                     <Typography variant="inherit">Profile</Typography>
                 </MenuItem>
-                <MenuItem onClick={handleProfileMenuClose}>
+                <MenuItem onClick={() => setAnchorElProfile(null)}>
                     <ListItemIcon> <AttachMoneyIcon fontSize="small" /></ListItemIcon>
                     <Typography variant="inherit">Your sales</Typography>
                 </MenuItem>
-                <MenuItem onClick={handleProfileMenuClose}>
+                <MenuItem onClick={() => setAnchorElProfile(null)}>
                     <ListItemIcon> <EmojiPeopleIcon fontSize="small" /></ListItemIcon>
                     <Typography variant="inherit">Your customers</Typography>
                 </MenuItem>
                 <Divider />
-                <MenuItem onClick={handleProfileMenuClose}>
+                <MenuItem onClick={() => setAnchorElProfile(null)}>
                     <ListItemIcon> <ExitToAppIcon fontSize="small" /></ListItemIcon>
                     <Typography variant="inherit">Sign out</Typography>
                 </MenuItem>
             </Menu>
-
         </React.Fragment>
 
     )
