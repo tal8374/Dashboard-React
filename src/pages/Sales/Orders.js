@@ -8,9 +8,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Title from './Title';
 
-import Dialog from '../../parts/Dialog/Dialog';
-
-
 // Generate Order Data
 function createData(id, date, name, shipTo, paymentMethod, amount) {
   return { id, date, name, shipTo, paymentMethod, amount };
@@ -23,10 +20,6 @@ const rows = [
   createData(3, '16 Mar, 2019', 'Michael Jackson', 'Gary, IN', 'AMEX ⠀•••• 2000', 654.39),
   createData(4, '15 Mar, 2019', 'Bruce Springsteen', 'Long Branch, NJ', 'VISA ⠀•••• 5919', 212.79),
 ];
-
-function preventDefault(event) {
-  event.preventDefault();
-}
 
 const useStyles = makeStyles((theme) => ({
   seeMore: {
@@ -73,8 +66,6 @@ const Orders = () => {
           See more orders
         </Link>
       </div>
-
-      <Dialog isOpen={isOrderDialogOpen} setOpen={setOrderDialogOpen} />
     </React.Fragment>
   );
 }

@@ -50,16 +50,6 @@ const menues = [
         icon: <AttachMoneyIcon />,
         onClick: (history) => history.push({ pathname: '/sales' }),
     },
-    {
-        text: 'Sellers',
-        icon: <RecordVoiceOverIcon />,
-        onClick: (history) => history.push({ pathname: '/sellers' }),
-    },
-    {
-        text: 'Customers',
-        icon: <ContactPhoneIcon />,
-        onClick: (history) => history.push({ pathname: '/customers' }),
-    },
 ];
 
 

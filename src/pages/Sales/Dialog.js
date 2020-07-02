@@ -6,7 +6,7 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-const AlertDialog = ({ isOpen, setOpen }) => {
+const MoreSalesDialog = ({ isOpen, setOpen }) => {
     return (
         <Dialog
             open={isOpen}
@@ -33,4 +33,4 @@ const AlertDialog = ({ isOpen, setOpen }) => {
     );
 }
 
-export default AlertDialog;
+export default MoreSalesDialog;
